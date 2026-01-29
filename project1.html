@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RussChords - Ruslan Kolomiyets</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--primary-blue: #0056b3;
+			--secondary-blue: #00a8e8;
+			--accent-blue: #4facfe;
+			--dark-blue: #002d5c;
+			--neutral-light: #f8f9fa;
+			--neutral-gray: #e9ecef;
+			--text-main: #343a40;
+			--text-muted: #6c757d;
+			--white: #ffffff;
+			--gradient-main: linear-gradient(135deg, #0056b3 0%, #00a8e8 100%);
+			--shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1);
+			--shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Inter', sans-serif;
+			line-height: 1.6;
+			color: var(--text-main);
+			background-color: var(--neutral-light);
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		/* Navigation */
+		.navbar {
+			background: var(--white);
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+		}
+
+		.nav-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 1rem 2rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.nav-brand {
+			font-size: 1.5rem;
+			font-weight: 700;
+			background: var(--gradient-main);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+
+		.nav-links {
+			display: flex;
+			gap: 2rem;
+			align-items: center;
+		}
+
+		.nav-link {
+			font-weight: 500;
+			color: var(--text-main);
+			transition: color 0.3s ease;
+		}
+
+		.nav-link:hover,
+		.nav-link.active {
+			color: var(--primary-blue);
+		}
+
+		.hamburger {
+			display: none;
+			cursor: pointer;
+			background: none;
+			border: none;
+			font-size: 1.5rem;
+			color: var(--text-main);
+		}
+
+		/* Mobile Menu */
+		.mobile-menu {
+			display: none;
+			background: var(--white);
+			border-top: 1px solid var(--neutral-gray);
+			padding: 1rem 2rem;
+		}
+
+		.mobile-menu.open {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		/* Project Detail Header */
+		.project-header {
+			background: var(--white);
+			padding: 4rem 2rem;
+			border-bottom: 1px solid var(--neutral-gray);
+		}
+
+		.container {
+			max-width: 900px;
+			margin: 0 auto;
+		}
+
+		.project-title {
+			font-size: 2.5rem;
+			color: var(--dark-blue);
+			margin-bottom: 1rem;
+			font-weight: 800;
+		}
+
+		.project-meta {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+			margin-bottom: 2rem;
+		}
+
+		.tech-tag {
+			background: var(--neutral-light);
+			padding: 0.4rem 1rem;
+			border-radius: 20px;
+			font-size: 0.9rem;
+			color: var(--primary-blue);
+			font-weight: 600;
+			border: 1px solid var(--neutral-gray);
+		}
+
+		/* Content */
+		.project-content-section {
+			padding: 4rem 2rem;
+			background: var(--light-bg);
+			flex-grow: 1;
+		}
+
+		.content-card {
+			background: var(--white);
+			padding: 3rem;
+			border-radius: 12px;
+			box-shadow: var(--shadow-card);
+			margin-bottom: 3rem;
+		}
+
+		.section-header {
+			font-size: 1.5rem;
+			margin-bottom: 1.5rem;
+			color: var(--dark-blue);
+			border-bottom: 2px solid var(--neutral-gray);
+			padding-bottom: 0.5rem;
+			display: inline-block;
+		}
+
+		p {
+			margin-bottom: 1.5rem;
+			color: var(--text-main);
+		}
+
+		ul {
+			list-style-position: inside;
+			margin-bottom: 1.5rem;
+			margin-left: 1rem;
+		}
+
+		li {
+			margin-bottom: 0.5rem;
+		}
+
+		/* Action Buttons */
+		.project-links {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+			margin-top: 2rem;
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.8rem 1.5rem;
+			border-radius: 8px;
+			font-weight: 600;
+			transition: all 0.3s;
+			text-decoration: none;
+		}
+
+		.btn-primary {
+			background: var(--primary-blue);
+			color: var(--white);
+			box-shadow: 0 4px 6px rgba(0, 86, 179, 0.2);
+		}
+
+		.btn-primary:hover {
+			background: var(--secondary-blue);
+			transform: translateY(-2px);
+			box-shadow: 0 6px 12px rgba(0, 86, 179, 0.3);
+		}
+
+		.btn-outline {
+			background: transparent;
+			border: 2px solid var(--primary-blue);
+			color: var(--primary-blue);
+		}
+
+		.btn-outline:hover {
+			background: var(--primary-blue);
+			color: var(--white);
+		}
+
+		/* Footer */
+		footer {
+			background: var(--dark-blue);
+			color: var(--white);
+			text-align: center;
+			padding: 2rem;
+			margin-top: auto;
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+			.nav-links {
+				display: none;
+			}
+
+			.hamburger {
+				display: block;
+			}
+
+			.project-title {
+				font-size: 2rem;
+			}
+
+			.content-card {
+				padding: 2rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar">
+		<div class="nav-container">
+			<a href="index.html" class="nav-brand">Ruslan Kolomiyets</a>
+			<div class="nav-links">
+				<a href="index.html" class="nav-link">Home</a>
+				<a href="project1.html" class="nav-link active">RussChords</a>
+				<a href="project2.html" class="nav-link">AWS Pipeline</a>
+				<a href="project3.html" class="nav-link">K8s Scaling</a>
+			</div>
+			<button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+				☰
+			</button>
+		</div>
+		<div class="mobile-menu" id="mobile-menu">
+			<a href="index.html" class="nav-link">Home</a>
+			<a href="project1.html" class="nav-link">RussChords</a>
+			<a href="project2.html" class="nav-link">AWS Pipeline</a>
+			<a href="project3.html" class="nav-link">K8s Scaling</a>
+		</div>
+	</nav>
+
+	<!-- Project Header -->
+	<header class="project-header">
+		<div class="container">
+			<h1 class="project-title">RussChords</h1>
+			<div class="project-meta">
+				<span class="tech-tag">AWS</span>
+				<span class="tech-tag">Terraform</span>
+				<span class="tech-tag">Jenkins</span>
+				<span class="tech-tag">C# / ASP.NET</span>
+				<span class="tech-tag">React</span>
+				<span class="tech-tag">Vite</span>
+				<span class="tech-tag">Mantine</span>
+			</div>
+			<div class="project-links">
+				<a href="https://russchords.app/" target="_blank" class="btn btn-primary">Live Site</a>
+				<a href="https://github.com/ruskoloma/russchords" target="_blank" class="btn btn-outline">GitHub
+					Repo</a>
+				<a href="https://www.youtube.com/watch?v=dKeR5R8fYHA" target="_blank" class="btn btn-outline">Watch
+					Demo</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- Project Content -->
+	<section class="project-content-section">
+		<div class="container">
+			<div class="content-card">
+				<h2 class="section-header">Project Overview</h2>
+				<p>
+					RussChords is a comprehensive web application designed to showcase a modern, cloud-native
+					architecture.
+					It demonstrates a full DevOps lifecycle, from infrastructure provisioning to automated application
+					deployment.
+				</p>
+				<p>
+					The project bridges the gap between complex backend logic and a user-friendly frontend, all hosted
+					on enterprise-grade cloud infrastructure.
+				</p>
+
+				<h2 class="section-header">Key Technical Features</h2>
+				<ul>
+					<li><strong>Infrastructure as Code:</strong> Complete AWS environment utilizing VPCs, Subnets, EC2,
+						and RDS provisioned via Terraform modules.</li>
+					<li><strong>CI/CD Pipelines:</strong> Automated build, test, and deployment workflows orchestrated
+						by Jenkins, ensuring rapid and reliable delivery.</li>
+					<li><strong>Backend Architecture:</strong> Robust RESTful API built with C# and ASP.NET Core,
+						implementing secure authentication and data management patterns.</li>
+					<li><strong>Modern Frontend:</strong> Responsive and interactive user interface developed with
+						React, Vite, and styled with Mantine UI library.</li>
+				</ul>
+
+				<h2 class="section-header">DevOps Workflow</h2>
+				<p>
+					The development workflow integrates Git-based version control with Jenkins webhooks. Upon pushing
+					code to the repository:
+				</p>
+				<ul>
+					<li>Terraform validates and applies infrastructure changes.</li>
+					<li>Jenkins builds the .NET backend and React frontend artifacts.</li>
+					<li>Automated tests are executed to verify integrity.</li>
+					<li>Successful builds are deployed to the AWS staging/production environment.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; 2024 Ruslan Kolomiyets. All rights reserved.</p>
+	</footer>
+
+	<script>
+		const hamburger = document.getElementById('hamburger');
+		const mobileMenu = document.getElementById('mobile-menu');
+
+		hamburger.addEventListener('click', () => {
+			mobileMenu.classList.toggle('open');
+		});
+	</script>
+</body>
+
+</html>
