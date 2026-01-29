@@ -2,6 +2,10 @@
 
 Personal portfolio website showcasing cloud and DevOps projects.
 
+## 🌐 Live Demo
+
+**GitHub Pages**: https://ruskoloma.github.io/DVOP320-Personal-Website/
+
 ## 🚀 Purpose
 
 This repository contains a responsive portfolio website built as part of DVOP320 course requirements. It features:
@@ -49,10 +53,6 @@ git push -u origin main
 ├── project3.html    # CI/CD Pipeline project
 └── README.md        # This file
 ```
-
-## 🌐 Live Demo
-
-**GitHub Pages**: https://ruskoloma.github.io/DVOP320-Personal-Website/
 
 ## 🎯 Assessment Requirements
 
