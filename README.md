@@ -50,13 +50,17 @@ git push -u origin main
 └── README.md        # This file
 ```
 
+## 🌐 Live Demo
+
+**GitHub Pages**: https://ruskoloma.github.io/DVOP320-Personal-Website/
+
 ## 🎯 Assessment Requirements
 
 - ✅ Repository correctly initialized and pushed to GitHub
 - ✅ Clean, well-organized HTML/CSS code
 - ✅ README documentation with workflow explanation
 - ✅ Meaningful commit messages
-- ⏭️ GitHub Pages deployment (not configured for this submission)
+- ✅ GitHub Pages deployment configured
 
 ## 🤝 Author
 
