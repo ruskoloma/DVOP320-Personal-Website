@@ -14,6 +14,43 @@ This repository contains a responsive portfolio website built as part of DVOP320
 - Clean, modern UI with gradient design system
 - Fully responsive layout
 
+## 🔄 Continuous Deployment with GitHub Actions
+
+This repository uses GitHub Actions for automated deployment to GitHub Pages. Every push to the `main` branch automatically triggers the deployment workflow.
+
+### Workflow Overview
+
+The deployment pipeline is defined in `.github/workflows/deploy.yml` and includes the following steps:
+
+1. **Checkout** - Clones the repository code
+2. **Setup Pages** - Configures the GitHub Pages environment
+3. **Upload Artifact** - Packages the website files for deployment
+4. **Deploy to GitHub Pages** - Deploys the site to the live URL
+
+### How to Trigger Deployment
+
+#### Automatic Deployment
+The workflow runs automatically when you push changes to the `main` branch:
+```bash
+git add .
+git commit -m "Your commit message"
+git push origin main
+```
+
+#### Manual Deployment
+You can also trigger the workflow manually from the GitHub Actions tab:
+1. Go to your repository on GitHub
+2. Click on the **Actions** tab
+3. Select **Deploy static content to Pages**
+4. Click **Run workflow** > **Run workflow**
+
+### Configuration Details
+
+- **Workflow file**: `.github/workflows/deploy.yml`
+- **Trigger**: Push to `main` branch + manual trigger (`workflow_dispatch`)
+- **Permissions**: contents: read, pages: write, id-token: write
+- **Concurrency**: Single deployment at a time to prevent conflicts
+
 ## 📋 Git Setup Workflow
 
 ### 1. Initialize Repository
@@ -42,16 +79,20 @@ git push -u origin main
 - **CSS3** - Custom properties, flexbox, gradients
 - **JavaScript** - Intersection Observer for scroll animations
 - **Google Fonts** - Inter typeface
+- **GitHub Actions** - CI/CD for automated deployment
 
 ## 📁 File Structure
 
 ```
 .
-├── index.html       # Main landing page
-├── project1.html    # Smart Home Automation project
-├── project2.html    # Cloud Migration project
-├── project3.html    # CI/CD Pipeline project
-└── README.md        # This file
+├── .github/
+│   └── workflows/
+│       └── deploy.yml    # GitHub Actions workflow
+├── index.html            # Main landing page
+├── project1.html         # Smart Home Automation project
+├── project2.html         # Cloud Migration project
+├── project3.html         # CI/CD Pipeline project
+└── README.md             # This file
 ```
 
 ## 🎯 Assessment Requirements
@@ -60,7 +101,7 @@ git push -u origin main
 - ✅ Clean, well-organized HTML/CSS code
 - ✅ README documentation with workflow explanation
 - ✅ Meaningful commit messages
-- ✅ GitHub Pages deployment configured
+- ✅ GitHub Pages deployment configured via GitHub Actions
 
 ## 🤝 Author
 
